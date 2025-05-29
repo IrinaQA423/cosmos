@@ -1,9 +1,6 @@
-import requests
 from dotenv import load_dotenv
 
 import os
-from datetime import datetime, timedelta
-from urllib.parse import urlparse
 import argparse
 
 from spacex_images import fetch_spacex_images
@@ -11,12 +8,12 @@ from nasa_apod import fetch_nasa_apod_images
 from earth_photos import download_earth_photos
 from images_utils import download_image
 
-    
+
 def setup_argparse():
     parser = argparse.ArgumentParser(description='Загружайте космические снимки из разных источников')
     parser.add_argument('--spacex', action='store_true', help='Загрузить фотографии запуска SpaceX')
     parser.add_argument('--apod', action='store_true', help='Загрузить фотографии NASA APOD')
-    parser.add_argument('--earth', action='store_true', help='Загрузите фотографии Земли из NASA EPIC')
+    parser.add_argument('--earth', action='store_true', help='Загрузить фотографии Земли из NASA EPIC')
     parser.add_argument('--all', action='store_true', help='Скачать из всех источников')
     parser.add_argument('--count', type=int, default=1, help='Количество изображений для загрузки (по умолчанию: 1)')
     return parser.parse_args()
@@ -53,11 +50,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-                
-
-
-
-
-
