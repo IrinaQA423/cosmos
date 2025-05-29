@@ -12,8 +12,11 @@ channel_id = os.getenv('CHANNEL_ID')
 message = 'Привет, мир!'
 
 bot = Bot(token=tg_token)
+photo_path = 'C:/python_scripts/cosmos/images/spacex_1.jpg'
+#bot.send_message(chat_id=channel_id, text=message)
+with open(photo_path, 'rb') as photo:
+    bot.send_photo(chat_id=channel_id, photo=photo)
 
-bot.send_message(chat_id=channel_id, text=message)
         
 
 #bot = Bot(tg_token)
