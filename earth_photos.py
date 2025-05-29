@@ -1,6 +1,7 @@
 import requests
 
 from datetime import datetime
+
 from images_utils import download_image
 
 

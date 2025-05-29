@@ -10,7 +10,7 @@
 2. Скачайте все файлы проекта на свой компьютер.
 
 ```
-https://github.com/IrinaQA423/wine-master.git
+https://github.com/IrinaQA423/cosmos.git
 ```
 
 3. Установите зависимости.
@@ -21,8 +21,7 @@ pip install -r requirements.txt
 
 #### Как получить доступ для скачивания фотографий с сайта https://api.nasa.gov/?
 
-1. Получите `NASA_API_KEY`, заполнив  предложенную на  сайте форму (фото для  примера).
-
+1. Получите `NASA_API_KEY`, заполнив  предложенную на  сайте форму.
 
 #### Как создать `Telegram канал` с ботом?
 
@@ -30,7 +29,7 @@ pip install -r requirements.txt
 
 2. Получите токен `Telegram бота` (скрин для примера).
 
-![](https://github.com/IrinaQA423/gists1/blob/main/Screenshot_5.png?raw=true)
+![](https://github.com/IrinaQA423/gists1/blob/main/Screenshot_18.png?raw=true)
 
 3. Создайте `Telegram канал`.
 
@@ -40,7 +39,7 @@ pip install -r requirements.txt
 
 В корне проекта создайте файл `.env` и поместите в него `NASA_API_KEY`, `TG_TOKEN` и `CHANNEL_ID`. 
 
-![](https://github.com/IrinaQA423/gists1/blob/main/Screenshot_10.png?raw=true)
+![](https://github.com/IrinaQA423/gists1/blob/main/Screenshot_19.png?raw=true)
 
 ### Как запустить  программу?
 
@@ -50,7 +49,7 @@ pip install -r requirements.txt
 python main.py --earth --count 5     # Скачивание  фотографий  Земли(NASA)  в  количестве 5 шт.
 python main.py --apod --count 3      # Скачивание  фотографии дня(NASA) в  количестве 3 шт.
 python main.py --spacex --count 10   # Скачивание  фотографий взлетов SpaceX в  количестве 10 шт.
-python main.py --all --count 2       # Скачивание  фотографий из всех трех источников  по 5 шт.
+python main.py --all --count 2       # Скачивание  фотографий из всех трех источников  по 2 шт.
 ```
 2. Для  отправки  сообщений ботом  в `Telegram канал` необходимо запустить через  терминал файл `images_cosmosBot.py`
 
