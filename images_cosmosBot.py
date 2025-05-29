@@ -1,6 +1,7 @@
 import requests
 from telegram import Bot
-from telegram.ext import Updater, CommandHandler
+from telegram import Update
+from telegram.ext import Updater, CommandHandler, CallbackContext
 from dotenv import load_dotenv
 import os
 
@@ -10,18 +11,10 @@ tg_token = os.getenv('TG_TOKEN')
 channel_id = os.getenv('CHANNEL_ID')
 message = 'Привет, мир!'
 
-url = f'https://api.telegram.org/bot{tg_token}/sendMessage'
-payload = {
-    'chat_id': channel_id,
-    'text': message
-}
+bot = Bot(token=tg_token)
 
-response = requests.post(url, data=payload)
-
-if response.status_code == 200:
-    print('Сообщение отправлено успешно!')
-else:
-    print('Ошибка при отправке сообщения:', response.text)
+bot.send_message(chat_id=channel_id, text=message)
+        
 
 #bot = Bot(tg_token)
 #info = bot.get_me()
@@ -32,4 +25,3 @@ else:
     #"username": info.username
 #}
 #print(filtered_info)
-#update.message.reply_text("I'm sorry Dave I'm afraid I can't do that.")
