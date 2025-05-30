@@ -4,6 +4,7 @@ import time
 
 from dotenv import load_dotenv
 from telegram import Bot, InputFile
+from telegram.error import BadRequest
 
 
 def load_config():
@@ -28,8 +29,8 @@ def publish_image(bot, tg_channel_id, image_path):
             )
     except FileNotFoundError:
         print(f"Файл не найден: {image_path}")
-    except Exception as e:
-        print(f"Произошла ошибка при публикации изображения {image_path}: {e}")
+    except BadRequest as br:
+        print(f"Произошла ошибка при публикации изображения {image_path}: {br}")
 
 
 def main():
