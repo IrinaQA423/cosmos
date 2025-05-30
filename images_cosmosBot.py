@@ -5,12 +5,11 @@ import time
 from dotenv import load_dotenv
 from telegram import Bot, InputFile
 
-
-load_dotenv()
-tg_token = os.getenv('TG_TOKEN')
-channel_id = os.getenv('CHANNEL_ID')
-bot = Bot(token=tg_token)
-image_folder = "C:/python_scripts/cosmos/images"
+def load_config()
+    load_dotenv()
+    tg_token = os.getenv('TG_TOKEN')
+    channel_id = os.getenv('CHANNEL_ID')
+    return tg_token, channel_id
 
 
 def get_image_files(folder):
@@ -18,7 +17,7 @@ def get_image_files(folder):
             if f.lower().endswith(('.png', '.jpg', '.jpeg', '.gif'))]
 
 
-def publish_image(image_path):
+def publish_image(bot, channel_id, image_path):
     try:
         with open(image_path, 'rb') as photo_file:
             bot.send_photo(
@@ -34,6 +33,10 @@ def publish_image(image_path):
 
 def main():
     try:
+    	bot = Bot(token=tg_token)
+        image_folder = "C:/python_scripts/cosmos/images"
+        tg_token, channel_id = load_config()
+
         images = get_image_files(image_folder)
         if not images:
             print("Нет изображений для публикации.")
