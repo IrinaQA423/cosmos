@@ -11,7 +11,7 @@ def download_earth_photos(api_key, num_photos, save_dir='images'):
 
     response = requests.get(earth_url, params=params)
     response.raise_for_status()
-    images_info = response.json()
+    nasa_earth_photos = response.json()
 
     for i, image_info in enumerate(images_info[:num_photos]):
 
