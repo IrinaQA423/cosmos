@@ -5,6 +5,7 @@ import time
 from dotenv import load_dotenv
 from telegram import Bot, InputFile
 
+
 def load_config()
     load_dotenv()
     tg_token = os.getenv('TG_TOKEN')
