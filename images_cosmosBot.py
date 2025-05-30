@@ -36,7 +36,7 @@ def main():
    
     tg_token, tg_channel_id = load_config()
     bot = Bot(token=tg_token)
-    image_folder = "C:/python_scripts/cosmos/images"
+    image_folder = "./images"
         
 
     images = get_image_files(image_folder)
