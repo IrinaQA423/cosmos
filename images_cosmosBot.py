@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from telegram import Bot, InputFile
 
 
-def load_config()
+def load_config():
     load_dotenv()
     tg_token = os.getenv('TG_TOKEN')
     tg_channel_id = os.getenv('TG_CHANNEL_ID')
@@ -18,7 +18,7 @@ def get_image_files(folder):
             if f.lower().endswith(('.png', '.jpg', '.jpeg', '.gif'))]
 
 
-def publish_image(bot, channel_id, image_path):
+def publish_image(bot, tg_channel_id, image_path):
     try:
         with open(image_path, 'rb') as photo_file:
             bot.send_photo(
@@ -33,34 +33,37 @@ def publish_image(bot, channel_id, image_path):
 
 
 def main():
-    try:
-    	bot = Bot(token=tg_token)
-        image_folder = "C:/python_scripts/cosmos/images"
-        tg_token, tg_channel_id = load_config()
+   
+    tg_token, tg_channel_id = load_config()
+    bot = Bot(token=tg_token)
+    image_folder = "C:/python_scripts/cosmos/images"
+        
 
-        images = get_image_files(image_folder)
-        if not images:
-            print("Нет изображений для публикации.")
-            return
+    images = get_image_files(image_folder)
+    if not images:
+        print("Нет изображений для публикации.")
+        return
 
-        for image in images.copy():
-            publish_image(os.path.join(image_folder, image))
-            time.sleep(4 * 60 * 60)
+    for image in images.copy():
+        image_path = os.path.join(image_folder, image)
+        publish_image(bot, tg_channel_id, image_path)
+        #time.sleep(4 * 60 * 60)
+        time.sleep(5)
 
-        while True:
-            try:
-                random.shuffle(images)
-                for image in images:
-                    publish_image(os.path.join(image_folder, image))
-                    time.sleep(4 * 60 * 60)
+    while True:
+        try:
+            random.shuffle(images)
+            for image in images:
+                image_path = os.path.join(image_folder, image)
+                publish_image(bot, tg_channel_id, image_path)
+                #time.sleep(4 * 60 * 60)
+                time.sleep(5)
 
-            except KeyboardInterrupt:
-                print("Публикация остановлена пользователем")
-                break
+        except KeyboardInterrupt:
+            print("Публикация остановлена пользователем")
+            break
 
-    except Exception as e:
-        print(f"Ошибка в основном цикле: {e}")
-
+    
 
 if __name__ == "__main__":
     main()
