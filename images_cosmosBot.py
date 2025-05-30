@@ -9,8 +9,8 @@ from telegram import Bot, InputFile
 def load_config()
     load_dotenv()
     tg_token = os.getenv('TG_TOKEN')
-    channel_id = os.getenv('CHANNEL_ID')
-    return tg_token, channel_id
+    tg_channel_id = os.getenv('TG_CHANNEL_ID')
+    return tg_token, tg_channel_id
 
 
 def get_image_files(folder):
@@ -22,7 +22,7 @@ def publish_image(bot, channel_id, image_path):
     try:
         with open(image_path, 'rb') as photo_file:
             bot.send_photo(
-                chat_id=channel_id,
+                chat_id=tg_channel_id,
                 photo=InputFile(photo_file),
                 caption=f"{os.path.basename(image_path)}"
             )
@@ -36,7 +36,7 @@ def main():
     try:
     	bot = Bot(token=tg_token)
         image_folder = "C:/python_scripts/cosmos/images"
-        tg_token, channel_id = load_config()
+        tg_token, tg_channel_id = load_config()
 
         images = get_image_files(image_folder)
         if not images:

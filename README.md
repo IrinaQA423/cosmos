@@ -37,9 +37,9 @@ pip install -r requirements.txt
 
 #### Где  хранить чувствительные данные?
 
-В корне проекта создайте файл `.env` и поместите в него `NASA_API_KEY`, `TG_TOKEN` и `CHANNEL_ID`. 
+В корне проекта создайте файл `.env` и поместите в него `NASA_API_KEY`, `TG_TOKEN` и `TG_CHANNEL_ID`. 
 
-![](https://github.com/IrinaQA423/gists1/blob/main/Screenshot_19.png?raw=true)
+![](https://github.com/IrinaQA423/gists1/blob/main/Screenshot_20.png?raw=true)
 
 ### Как запустить  программу?
 
