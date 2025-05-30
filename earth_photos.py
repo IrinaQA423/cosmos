@@ -13,7 +13,7 @@ def download_earth_photos(api_key, num_photos, save_dir='images'):
     response.raise_for_status()
     nasa_earth_photos = response.json()
 
-    for i, nasa_earth_photos in enumerate(nasa_earth_photos[:num_photos]):
+    for index, nasa_earth_photos in enumerate(nasa_earth_photos[:num_photos]):
 
         image_date = datetime.strptime(nasa_earth_photos['date'], "%Y-%m-%d %H:%M:%S")
         date_str = image_date.strftime("%Y/%m/%d")
