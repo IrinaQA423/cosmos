@@ -28,10 +28,23 @@ def publish_image(bot, tg_channel_id, image_path):
                 caption=f"{os.path.basename(image_path)}"
             )
     except FileNotFoundError:
-        print(f"Файл не найден: {image_path}")
-    except BadRequest as br:
-        print(f"Произошла ошибка при публикации изображения {image_path}: {br}")
+        log_message(f"Файл не найден: {image_path}")
+        handle_file_not_found(image_path)
+    except BadRequest as e:
+        log_message(f"Ошибка при отправке изображения: {e}")
+        handle_bad_request(e, image_path)
 
+def log_message(message):
+    print(message) 
+
+
+def handle_bad_request(exception, image_path):
+    log_message(f"BadRequest: {exception} для изображения: {image_path}")
+    
+
+def handle_file_not_found(image_path):
+    log_message(f"Файл не найден: {image_path}")
+    
 
 def main():
    
