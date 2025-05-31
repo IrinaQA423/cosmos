@@ -18,6 +18,7 @@ def get_image_files(folder):
     return [f for f in os.listdir(folder)
             if f.lower().endswith(('.png', '.jpg', '.jpeg', '.gif'))]
 
+
 def handle_errors(image_path, error):
     if isinstance(error, BadRequest):
         print(f"Произошла ошибка при публикации изображения {image_path}: {error}")
