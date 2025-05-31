@@ -44,6 +44,13 @@ def handle_bad_request(exception, image_path):
 
 def handle_file_not_found(image_path):
     log_message(f"Файл не найден: {image_path}")
+
+
+def send_images(bot, tg_channel_id, images, image_folder, delay=14400):
+    for image in images:
+        image_path = os.path.join(image_folder, image)
+        publish_image(bot, tg_channel_id, image_path)
+        time.sleep(delay)
     
 
 def main():
@@ -58,20 +65,12 @@ def main():
         print("Нет изображений для публикации.")
         return
 
-    for image in images.copy():
-        image_path = os.path.join(image_folder, image)
-        publish_image(bot, tg_channel_id, image_path)
-        #time.sleep(4 * 60 * 60)
-        time.sleep(5)
-
+    send_images(bot, tg_channel_id, images.copy(), image_folder)
+                
     while True:
         try:
             random.shuffle(images)
-            for image in images:
-                image_path = os.path.join(image_folder, image)
-                publish_image(bot, tg_channel_id, image_path)
-                #time.sleep(4 * 60 * 60)
-                time.sleep(5)
+            send_images(bot, tg_channel_id, images.copy(), image_folder)
 
         except KeyboardInterrupt:
             print("Публикация остановлена пользователем")
