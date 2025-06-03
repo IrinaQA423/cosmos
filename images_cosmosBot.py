@@ -19,29 +19,25 @@ def get_image_files(folder):
             if f.lower().endswith(('.png', '.jpg', '.jpeg', '.gif'))]
 
 
-def handle_errors(image_path, error):
-    if isinstance(error, BadRequest):
-        print(f"Произошла ошибка при публикации изображения {image_path}: {error}")
-    
-
 def publish_image(bot, tg_channel_id, image_path):
-    try:
-        with open(image_path, 'rb') as photo_file:
-            bot.send_photo(
-                chat_id=tg_channel_id,
-                photo=InputFile(photo_file),
-                caption=f"{os.path.basename(image_path)}"
-            )
     
-    except BadRequest as e:
-        handle_errors(image_path, e)
+    with open(image_path, 'rb') as photo_file:
+        bot.send_photo(
+            chat_id=tg_channel_id,
+            photo=InputFile(photo_file),
+            caption=f"{os.path.basename(image_path)}"
+        )
+    
     
 
 def send_images(bot, tg_channel_id, images, image_folder, delay=14400):
     for image in images:
         image_path = os.path.join(image_folder, image)
-        publish_image(bot, tg_channel_id, image_path)
-        time.sleep(delay)
+        try:
+            publish_image(bot, tg_channel_id, image_path)
+            time.sleep(delay)
+        except BadRequest as e:
+            print (f"Ошибка  при  публикации {image_path}:{e}")
     
 
 def main():
